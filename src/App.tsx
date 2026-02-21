@@ -1,9 +1,12 @@
-const App = () => {
+import { AuthProvider } from "./app/providers/AuthProvider";
+import AppRouter from "./app/router";
+
+function App() {
   return (
-    <div className="w-full h-screen bg-red-500 flex items-center justify-center text-5xl font-extrabold">
-      Test
-    </div>
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
   );
-};
+}
 
 export default App;
