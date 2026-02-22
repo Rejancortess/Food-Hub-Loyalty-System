@@ -198,9 +198,6 @@ const Register = () => {
             >
               <Link to="/login">Login to existing Account</Link>
             </button>
-            <div className="text-center mt-5 font-extralight cursor-pointer">
-              <p>Forget Password?</p>
-            </div>
           </form>
         </div>
       </div>

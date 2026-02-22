@@ -14,6 +14,7 @@ export const ADMIN_EMAIL = configuredAdminEmail || "";
 export const PATHS = {
   LOGIN: "/login",
   REGISTER: "/register",
+  FORGOT_PASSWORD: "/forgot-password",
   CLIENT_DASHBOARD: "/client/dashboard",
   CLIENT_SCAN: "/client/scan",
   ADMIN_DASHBOARD: "/admin/dashboard",

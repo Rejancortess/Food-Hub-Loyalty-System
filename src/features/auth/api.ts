@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -18,13 +19,21 @@ export async function registerWithEmail(input: RegisterInput) {
   const uid = cred.user.uid;
   const role = resolveRoleByEmail(input.email);
 
-  await setDoc(doc(db, "users", uid), {
-    uid,
-    email: input.email,
-    fullName: input.fullName,
-    mobile: input.mobile,
-    role,
-    createdAt: serverTimestamp(),
+  // Do not block registration forever if Firestore write is slow/unavailable.
+  await Promise.race([
+    setDoc(doc(db, "users", uid), {
+      uid,
+      email: input.email,
+      fullName: input.fullName,
+      mobile: input.mobile,
+      role,
+      createdAt: serverTimestamp(),
+    }),
+    new Promise<never>((_, reject) => {
+      setTimeout(() => reject(new Error("profile-write-timeout")), 7000);
+    }),
+  ]).catch((error) => {
+    console.warn("User profile write skipped:", error);
   });
 
   return cred.user;
@@ -36,4 +45,8 @@ export function loginWithEmail(email: string, password: string) {
 
 export function logout() {
   return signOut(auth);
+}
+
+export function forgotPasswordWithEmail(email: string) {
+  return sendPasswordResetEmail(auth, email);
 }
