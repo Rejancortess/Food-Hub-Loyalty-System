@@ -3,7 +3,7 @@ import RequireAuth from "./guards/RequireAuth";
 import RequireRole from "./guards/RequireRole";
 import HomeRedirect from "./HomeRedirect";
 import PublicLayout from "../../layouts/PublicLayout";
-import Login from "../../pages/public/login";
+import Login from "../../pages/public/Login";
 import Register from "../../pages/public/Register";
 
 export const routes: RouteObject[] = [
