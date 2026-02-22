@@ -5,6 +5,7 @@ import HomeRedirect from "./HomeRedirect";
 import PublicLayout from "../../layouts/PublicLayout";
 import Login from "../../pages/public/Login";
 import Register from "../../pages/public/Register";
+import ClientDashboard from "../../pages/client/ClientDasboard";
 
 export const routes: RouteObject[] = [
   // Public routes
@@ -36,7 +37,7 @@ export const routes: RouteObject[] = [
         children: [
           {
             path: "dashboard",
-            element: <div>Client Dashboard</div>,
+            element: <ClientDashboard />,
           },
           {
             path: "scan",
