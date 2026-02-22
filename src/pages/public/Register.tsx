@@ -1,13 +1,13 @@
 import { useState } from "react";
 import logo from "../../assets/logo.png";
-import { Mail, Lock, EyeClosed, Eye, ArrowRight, Phone } from "lucide-react";
+import { Mail, Lock, EyeClosed, Eye, Phone, Utensils } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="px-4 sm:px-6">
+    <div className="px-4 sm:px-6 mb-10">
       <div>
         <img
           src={logo}
@@ -106,16 +106,22 @@ const Register = () => {
               </div>
             </div>
             <button className="bg-green-600 text-white font-bold  w-full py-3 rounded-lg mt-4 flex items-center justify-center gap-2">
-              Login as Warrior <ArrowRight size={20} />
+              <Utensils className="inline " size={20} />
+              Register as Warrior
             </button>
             <div className="flex items-center gap-4 my-4">
               <hr className="flex-1 border-gray-300" />
-              <span className="text-gray-500 text-sm font-extralight">OR</span>
+              <span className="text-gray-500 text-sm font-extralight">
+                ALREADY A MEMBER?
+              </span>
               <hr className="flex-1 border-gray-300" />
             </div>
-            <button className="border border-green-500 py-3 rounded-xl font-semibold text-green-600">
-              Register for new Account
+            <button className="bg-green-100 py-3 rounded-xl font-semibold text-green-600">
+              <Link to="/login">Login to existing Account</Link>
             </button>
+            <div className="text-center mt-5 font-extralight cursor-pointer">
+              <p>Forget Password?</p>
+            </div>
           </form>
         </div>
       </div>

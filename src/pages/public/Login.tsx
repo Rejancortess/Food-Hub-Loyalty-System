@@ -80,7 +80,7 @@ const Login = () => {
               <hr className="flex-1 border-gray-300" />
             </div>
             <button className="border border-green-500 py-3 rounded-xl font-semibold text-green-600">
-              Register for new Account
+              <Link to="/register">Register for new Account</Link>
             </button>
           </form>
         </div>
