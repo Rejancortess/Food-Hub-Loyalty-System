@@ -18,7 +18,7 @@ const ClientDashboard = () => {
   };
 
   return (
-    <div className="py-5 px-2 sm:px-20">
+    <div className="py-10">
       <h1 className="font-bold text-3xl">Redeem Your Points</h1>
       <p className="font-extralight mt-2">
         Treat yourself! Exchange your earned points for these delicious rewards.
