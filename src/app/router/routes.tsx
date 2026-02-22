@@ -6,12 +6,18 @@ import PublicLayout from "../../layouts/PublicLayout";
 import Login from "../../pages/public/Login";
 import Register from "../../pages/public/Register";
 import ClientDashboard from "../../pages/client/ClientDasboard";
+import ForgetPassword from "../../pages/public/ForgetPassword";
+import { PATHS } from "../config/constants";
 
 export const routes: RouteObject[] = [
   // Public routes
   {
     path: "/",
     element: <HomeRedirect />,
+  },
+  {
+    path: PATHS.FORGOT_PASSWORD,
+    element: <ForgetPassword />,
   },
   {
     element: <PublicLayout />,

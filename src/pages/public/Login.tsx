@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginWithEmail } from "../../features/auth/api";
 import { PATHS, resolveRoleByEmail, ROLES } from "../../app/config/constants";
 import { useAuth } from "../../app/providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Login = () => {
         email: credential.user.email,
         role,
       });
+      toast.success("Login successful!");
 
       if (role === ROLES.ADMIN) {
         navigate(PATHS.ADMIN_DASHBOARD, { replace: true });
@@ -39,6 +41,7 @@ const Login = () => {
       navigate(PATHS.CLIENT_DASHBOARD, { replace: true });
     } catch {
       setError("Invalid email or password. Please try again.");
+      toast.error("Something went wrong.");
     } finally {
       setIsSubmitting(false);
     }
@@ -138,6 +141,9 @@ const Login = () => {
               <Link to="/register">Register for new Account</Link>
             </button>
           </form>
+          <div className="text-center mt-5 font-extralight cursor-pointer">
+            <Link to={PATHS.FORGOT_PASSWORD}>Forget Password?</Link>
+          </div>
         </div>
       </div>
     </div>
