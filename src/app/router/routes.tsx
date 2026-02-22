@@ -3,10 +3,12 @@ import RequireAuth from "./guards/RequireAuth";
 import RequireRole from "./guards/RequireRole";
 import HomeRedirect from "./HomeRedirect";
 import PublicLayout from "../../layouts/PublicLayout";
+import ClientLayout from "../../layouts/ClientLayout";
 import Login from "../../pages/public/Login";
 import Register from "../../pages/public/Register";
 import ClientDashboard from "../../pages/client/ClientDasboard";
 import ForgetPassword from "../../pages/public/ForgetPassword";
+import ResetPassword from "../../pages/public/ResetPassword";
 import { PATHS } from "../config/constants";
 
 export const routes: RouteObject[] = [
@@ -18,6 +20,10 @@ export const routes: RouteObject[] = [
   {
     path: PATHS.FORGOT_PASSWORD,
     element: <ForgetPassword />,
+  },
+  {
+    path: PATHS.RESET_PASSWORD,
+    element: <ResetPassword />,
   },
   {
     element: <PublicLayout />,
@@ -42,12 +48,17 @@ export const routes: RouteObject[] = [
         element: <RequireRole role="client" />,
         children: [
           {
-            path: "dashboard",
-            element: <ClientDashboard />,
-          },
-          {
-            path: "scan",
-            element: <div>Client QR Scanner</div>,
+            element: <ClientLayout />,
+            children: [
+              {
+                path: "dashboard",
+                element: <ClientDashboard />,
+              },
+              {
+                path: "qr-code",
+                element: <div>Client QR Scanner</div>,
+              },
+            ],
           },
         ],
       },

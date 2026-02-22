@@ -4,6 +4,7 @@ import { ArrowLeft, Mail, Send } from "lucide-react";
 import logo from "../../assets/logo.png";
 import { forgotPasswordWithEmail } from "../../features/auth/api";
 import { PATHS } from "../../app/config/constants";
+import type { FirebaseError } from "firebase/app";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
@@ -23,8 +24,10 @@ const ForgetPassword = () => {
         "Password reset link sent. Please check your email inbox.",
       );
       setEmail("");
-    } catch {
-      setError("Unable to send reset email right now. Please try again.");
+    } catch (error) {
+      const firebaseError = error as FirebaseError;
+      const code = firebaseError.code ?? "unknown-error";
+      setError(`Unable to send reset email (${code}). Please try again.`);
     } finally {
       setIsSubmitting(false);
     }
