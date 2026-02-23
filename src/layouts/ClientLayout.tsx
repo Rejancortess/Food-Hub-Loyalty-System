@@ -5,8 +5,8 @@ import { Outlet } from "react-router-dom";
 const ClientLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="sm:px-20 px-5 flex-1 bg-gray-50">
+      <Header showLogout />
+      <main className="sm:px-40 px-10 flex-1 bg-gray-50">
         <Outlet />
       </main>
       <Footer />
