@@ -1,12 +1,14 @@
 import {
+  confirmPasswordReset,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
+  verifyPasswordResetCode,
 } from "firebase/auth";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { auth, db } from "../../app/config/firebase";
-import { resolveRoleByEmail } from "../../app/config/constants";
+import { PATHS, resolveRoleByEmail } from "../../app/config/constants";
 import type { RegisterInput } from "./types";
 
 export async function registerWithEmail(input: RegisterInput) {
@@ -48,5 +50,17 @@ export function logout() {
 }
 
 export function forgotPasswordWithEmail(email: string) {
-  return sendPasswordResetEmail(auth, email);
+  return sendPasswordResetEmail(auth, email, {
+    // Redirect reset flow back into this app.
+    url: `${window.location.origin}${PATHS.RESET_PASSWORD}`,
+    handleCodeInApp: false,
+  });
+}
+
+export function verifyResetCode(code: string) {
+  return verifyPasswordResetCode(auth, code);
+}
+
+export function resetPasswordWithCode(code: string, newPassword: string) {
+  return confirmPasswordReset(auth, code, newPassword);
 }

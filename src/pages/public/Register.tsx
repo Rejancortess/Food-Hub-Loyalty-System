@@ -13,6 +13,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { registerWithEmail } from "../../features/auth/api";
 import { PATHS, resolveRoleByEmail, ROLES } from "../../app/config/constants";
 import { useAuth } from "../../app/providers/AuthProvider";
+import { toast } from "react-toastify/unstyled";
+import Button from "../../components/ui/Button";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -46,6 +48,7 @@ const Register = () => {
         email: firebaseUser.email,
         role,
       });
+      toast.success("Login successful!");
 
       if (role === ROLES.ADMIN) {
         navigate(PATHS.ADMIN_DASHBOARD, { replace: true });
@@ -177,14 +180,15 @@ const Register = () => {
 
             {error ? <p className="text-sm text-red-600">{error}</p> : null}
 
-            <button
+            <Button
               type="submit"
               disabled={isSubmitting}
               className="bg-green-600 text-white font-bold  w-full py-3 rounded-lg mt-4 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
             >
               <Utensils className="inline " size={20} />
               {isSubmitting ? "Registering..." : "Register as Warrior"}
-            </button>
+            </Button>
+
             <div className="flex items-center gap-4 my-4">
               <hr className="flex-1 border-gray-300" />
               <span className="text-gray-500 text-sm font-extralight">

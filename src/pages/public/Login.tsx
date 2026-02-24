@@ -6,6 +6,7 @@ import { loginWithEmail } from "../../features/auth/api";
 import { PATHS, resolveRoleByEmail, ROLES } from "../../app/config/constants";
 import { useAuth } from "../../app/providers/AuthProvider";
 import { toast } from "react-toastify";
+import Button from "../../components/ui/Button";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -121,14 +122,10 @@ const Login = () => {
 
             {error ? <p className="text-sm text-red-600">{error}</p> : null}
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-green-600 text-white font-bold  w-full py-3 rounded-lg mt-4 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
+            <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Logging in..." : "Login as Warrior"}
               <ArrowRight size={20} />
-            </button>
+            </Button>
             <div className="flex items-center gap-4 my-4">
               <hr className="flex-1 border-gray-300" />
               <span className="text-gray-500 text-sm font-extralight">OR</span>
