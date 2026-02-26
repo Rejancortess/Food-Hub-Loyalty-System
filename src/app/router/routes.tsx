@@ -10,6 +10,8 @@ import ClientDashboard from "../../pages/client/ClientDasboard";
 import ForgetPassword from "../../pages/public/ForgetPassword";
 import ResetPassword from "../../pages/public/ResetPassword";
 import { PATHS } from "../config/constants";
+import AdminLayout from "../../layouts/AdminLayout";
+import AdminDashboard from "../../pages/Admin/AdminDashboard";
 
 export const routes: RouteObject[] = [
   // Public routes
@@ -74,16 +76,21 @@ export const routes: RouteObject[] = [
         element: <RequireRole role="admin" />,
         children: [
           {
-            path: "dashboard",
-            element: <div>Admin Dashboard</div>,
-          },
-          {
-            path: "qr-scanner",
-            element: <div>Admin QR Scanner</div>,
-          },
-          {
-            path: "rewards",
-            element: <div>Admin Rewards Management</div>,
+            element: <AdminLayout />,
+            children: [
+              {
+                path: "dashboard",
+                element: <AdminDashboard />,
+              },
+              {
+                path: "qr-scanner",
+                element: <div>Admin QR Scanner</div>,
+              },
+              {
+                path: "rewards",
+                element: <div>Admin Rewards Management</div>,
+              },
+            ],
           },
         ],
       },
