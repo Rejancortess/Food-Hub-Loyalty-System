@@ -1,6 +1,7 @@
 import CurrentBalance from "../../components/client/CurrentBalance";
 import FoodCard from "../../components/client/FoodCard";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Food1 from "../../assets/food/food-1.png";
 import Food2 from "../../assets/food/food-2.png";
 import Food3 from "../../assets/food/food-3.png";
@@ -10,8 +11,32 @@ import Food6 from "../../assets/food/food-6.png";
 import Food7 from "../../assets/food/food-7.png";
 
 import { QrCode } from "lucide-react";
+import { useAuth } from "../../app/providers/AuthProvider";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../app/config/firebase";
 
 const ClientDashboard = () => {
+  const { user } = useAuth();
+  const [currentPoints, setCurrentPoints] = useState(0);
+
+  useEffect(() => {
+    if (!user?.uid) return;
+
+    const fetchPoints = async () => {
+      try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          setCurrentPoints(Number(data?.points ?? data?.userBalance ?? 0));
+        }
+      } catch (error) {
+        console.error("Error fetching user points:", error);
+      }
+    };
+
+    fetchPoints();
+  }, [user?.uid]);
+
   const freeFood = [
     {
       img: Food1,
@@ -58,15 +83,13 @@ const ClientDashboard = () => {
     },
   ];
 
-  const currentPoints = 1250;
-
   return (
     <div className="py-10">
       <h1 className="font-bold text-3xl">Redeem Your Points</h1>
       <p className="font-extralight mt-2">
         Treat yourself! Exchange your earned points for these delicious rewards.
       </p>
-      <CurrentBalance />
+      <CurrentBalance points={currentPoints} />
 
       <Link to="/client/qr-code" className="flex">
         <div className="mt-5 bg-green-100 p-2 rounded-lg w-max cursor-pointer">

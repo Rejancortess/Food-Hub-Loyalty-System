@@ -6,7 +6,7 @@ const ClientLayout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header showLogout />
-      <main className="sm:px-40 px-10 flex-1 bg-gray-50">
+      <main className="sm:px-40 px-7 flex-1 bg-gray-50">
         <Outlet />
       </main>
       <Footer />

@@ -10,6 +10,8 @@ import ClientDashboard from "../../pages/client/ClientDasboard";
 import ForgetPassword from "../../pages/public/ForgetPassword";
 import ResetPassword from "../../pages/public/ResetPassword";
 import { PATHS } from "../config/constants";
+import AdminLayout from "../../layouts/AdminLayout";
+import ClientQrCode from "../../pages/client/ClientQrCode";
 
 export const routes: RouteObject[] = [
   // Public routes
@@ -56,7 +58,7 @@ export const routes: RouteObject[] = [
               },
               {
                 path: "qr-code",
-                element: <div>Client QR Scanner</div>,
+                element: <ClientQrCode />,
               },
             ],
           },
@@ -75,7 +77,7 @@ export const routes: RouteObject[] = [
         children: [
           {
             path: "dashboard",
-            element: <div>Admin Dashboard</div>,
+            element: <AdminLayout />,
           },
           {
             path: "qr-scanner",

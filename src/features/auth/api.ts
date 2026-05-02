@@ -21,21 +21,15 @@ export async function registerWithEmail(input: RegisterInput) {
   const uid = cred.user.uid;
   const role = resolveRoleByEmail(input.email);
 
-  // Do not block registration forever if Firestore write is slow/unavailable.
-  await Promise.race([
-    setDoc(doc(db, "users", uid), {
-      uid,
-      email: input.email,
-      fullName: input.fullName,
-      mobile: input.mobile,
-      role,
-      createdAt: serverTimestamp(),
-    }),
-    new Promise<never>((_, reject) => {
-      setTimeout(() => reject(new Error("profile-write-timeout")), 7000);
-    }),
-  ]).catch((error) => {
-    console.warn("User profile write skipped:", error);
+  await setDoc(doc(db, "users", uid), {
+    uid,
+    email: input.email,
+    fullName: input.fullName,
+    mobile: input.mobile,
+    points: 0,
+    userBalance: 0,
+    role,
+    createdAt: serverTimestamp(),
   });
 
   return cred.user;

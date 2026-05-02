@@ -54,7 +54,7 @@ const Login = () => {
         <img
           src={logo}
           alt="K-warriors Food Hub Logo"
-          className="w-50 my-5 mx-auto "
+          className="w-60 mb-4 mx-auto "
         />
       </div>
       <div className="text-center px-4">

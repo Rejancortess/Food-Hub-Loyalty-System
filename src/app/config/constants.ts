@@ -5,7 +5,9 @@ export const ROLES = {
 
 export type Role = (typeof ROLES)[keyof typeof ROLES];
 
-const configuredAdminEmail = (import.meta.env.VITE_ADMIN_EMAIL as string | undefined)
+const configuredAdminEmail = (
+  import.meta.env.VITE_ADMIN_EMAIL as string | undefined
+)
   ?.trim()
   .toLowerCase();
 
@@ -17,7 +19,7 @@ export const PATHS = {
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password",
   CLIENT_DASHBOARD: "/client/dashboard",
-  CLIENT_SCAN: "/client/scan",
+  CLIENT_SCAN: "/client/qr-code",
   ADMIN_DASHBOARD: "/admin/dashboard",
   ADMIN_QR: "/admin/qr-scanner",
   ADMIN_REWARD_NEW: "/admin/rewards/new",
