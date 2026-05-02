@@ -1,6 +1,10 @@
 import { Wallet, History } from "lucide-react";
 
-const CurrentBalance = () => {
+type CurrentBalanceProps = {
+  points: number;
+};
+
+const CurrentBalance = ({ points }: CurrentBalanceProps) => {
   return (
     <div className="mt-5 border p-5 rounded-lg bg-white shadow-sm border-green-500">
       <div className="flex gap-4 flex-col md:flex-row items-center justify-between">
@@ -11,7 +15,8 @@ const CurrentBalance = () => {
           <div>
             <p className="font-light text-gray-500 ">YOUR CURRENT BALANCE</p>
             <p className="text-3xl font-extrabold">
-              1,250 <span className="text-green-600">Points</span>
+              {points.toLocaleString()}{" "}
+              <span className="text-green-600">Points</span>
             </p>
           </div>
         </div>
