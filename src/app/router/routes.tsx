@@ -12,6 +12,9 @@ import ResetPassword from "../../pages/public/ResetPassword";
 import { PATHS } from "../config/constants";
 import AdminLayout from "../../layouts/AdminLayout";
 import ClientQrCode from "../../pages/client/ClientQrCode";
+import Dashboard from "../../pages/admin/Dashboard";
+import AdminQrcode from "../../pages/admin/AdminQrcode";
+import Customers from "../../pages/admin/Customers";
 
 export const routes: RouteObject[] = [
   // Public routes
@@ -76,16 +79,25 @@ export const routes: RouteObject[] = [
         element: <RequireRole role="admin" />,
         children: [
           {
-            path: "dashboard",
             element: <AdminLayout />,
-          },
-          {
-            path: "qr-scanner",
-            element: <div>Admin QR Scanner</div>,
-          },
-          {
-            path: "rewards",
-            element: <div>Admin Rewards Management</div>,
+            children: [
+              {
+                index: true,
+                element: <Dashboard />,
+              },
+              {
+                path: "dashboard",
+                element: <Dashboard />,
+              },
+              {
+                path: "qr-scanner",
+                element: <AdminQrcode />,
+              },
+              {
+                path: "customers",
+                element: <Customers />,
+              },
+            ],
           },
         ],
       },
