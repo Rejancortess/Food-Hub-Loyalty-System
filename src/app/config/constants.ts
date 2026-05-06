@@ -22,7 +22,7 @@ export const PATHS = {
   CLIENT_SCAN: "/client/qr-code",
   ADMIN_DASHBOARD: "/admin/dashboard",
   ADMIN_QR: "/admin/qr-scanner",
-  ADMIN_REWARD_NEW: "/admin/rewards/new",
+  ADMIN_CUSTOMERS: "/admin/customers",
 } as const;
 
 export function resolveRoleByEmail(email: string | null | undefined): Role {
