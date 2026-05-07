@@ -23,6 +23,8 @@ export const PATHS = {
   ADMIN_DASHBOARD: "/admin/dashboard",
   ADMIN_QR: "/admin/qr-scanner",
   ADMIN_CUSTOMERS: "/admin/customers",
+  ADMIN_ADDNEWREWARD: "/admin/add-new-reward",
+  ADMIN_ADDPOINTS: "/admin/add-points",
 } as const;
 
 export function resolveRoleByEmail(email: string | null | undefined): Role {
