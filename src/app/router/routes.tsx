@@ -15,6 +15,8 @@ import ClientQrCode from "../../pages/client/ClientQrCode";
 import Dashboard from "../../pages/admin/Dashboard";
 import AdminQrcode from "../../pages/admin/AdminQrcode";
 import Customers from "../../pages/admin/Customers";
+import AddNewReward from "../../pages/admin/AddNewReward";
+import AddPoints from "../../pages/admin/AddPoints";
 
 export const routes: RouteObject[] = [
   // Public routes
@@ -96,6 +98,14 @@ export const routes: RouteObject[] = [
               {
                 path: "customers",
                 element: <Customers />,
+              },
+              {
+                path: "add-new-reward",
+                element: <AddNewReward />,
+              },
+              {
+                path: "add-points",
+                element: <AddPoints />,
               },
             ],
           },

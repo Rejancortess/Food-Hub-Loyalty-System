@@ -34,7 +34,9 @@ const FoodCard = ({
       </div>
       <div className="flex-1 p-4 flex flex-col">
         <p className="font-semibold text-xl">{name}</p>
-        <p className="text-sm font-light mt-1 h-10 overflow-hidden">{description}</p>
+        <p className="text-sm font-light mt-1 h-10 overflow-hidden">
+          {description}
+        </p>
         <Button className="mt-auto" disabled={isLocked}>
           {isLocked ? "Locked" : "Redeem"}
         </Button>

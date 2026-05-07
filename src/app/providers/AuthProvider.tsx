@@ -9,6 +9,7 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { resolveRoleByEmail, type Role } from "../config/constants";
+import { markUserActive } from "../../features/auth/api";
 
 type User = {
   uid: string;
@@ -37,6 +38,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser(null);
           setLoading(false);
           return;
+        }
+
+        if (resolveRoleByEmail(firebaseUser.email) === "client") {
+          void markUserActive(firebaseUser.uid).catch((error) => {
+            console.error("Failed to mark user active:", error);
+          });
         }
 
         setUser({
